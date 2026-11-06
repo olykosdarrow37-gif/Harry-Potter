@@ -1,0 +1,36 @@
+{
+  "name": "brazils-cave",
+  "productName": "THE BRAZILS CAVE",
+  "version": "1.0.0",
+  "description": "Audiobook player with exact-resume memory, genre shelves, PDF reader and themes",
+  "author": "Brazils",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.brazilscave.player",
+    "productName": "THE BRAZILS CAVE",
+    "files": ["main.js", "app/**/*", "build/icon.png", "build/icon.ico"],
+    "directories": { "output": "dist", "buildResources": "build" },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "BrazilsCave-Setup-${version}.${ext}"
+    },
+    "portable": { "artifactName": "BrazilsCave-Portable-${version}.${ext}" }
+  }
+}
